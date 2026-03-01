@@ -10,6 +10,17 @@ const links = [
 
 const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mreavjkr'
 
+const codingLanguages = [
+  { name: 'Python', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg' },
+  { name: 'TypeScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg' },
+  { name: 'JavaScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg' },
+  { name: 'Java', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg' },
+  { name: 'C', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg' },
+  { name: 'C++', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg' },
+  { name: 'SQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg' },
+  { name: 'R', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/r/r-original.svg' },
+]
+
 interface Project {
   title: string
   description: string
@@ -231,6 +242,18 @@ function App() {
               <li>Mathematical Methods in Physical Sciences II</li>
             </ul>
           </div>
+        </div>
+      </section>
+
+      <section className="section" id="skills">
+        <h2>Coding Languages</h2>
+        <div className="skills-grid">
+          {codingLanguages.map((language) => (
+            <article key={language.name} className="skill-chip">
+              <img src={language.icon} alt={`${language.name} logo`} />
+              <span>{language.name}</span>
+            </article>
+          ))}
         </div>
       </section>
 
