@@ -527,6 +527,12 @@
   font-weight: 600;
 }
 
+.education-school {
+  font-size: 1.12rem;
+  font-weight: 800;
+  color: #7d1f2d;
+}
+
 .exp-date {
   font-size: 0.8rem;
   color: var(--color-text-secondary);
@@ -563,6 +569,70 @@
 
 .exp-bullets li::before {
   content: '— ';
+}
+
+/* ── Education Emphasis ── */
+
+.education-highlights {
+  margin-bottom: 0.6rem;
+}
+
+.financial-program {
+  font-size: 0.93rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.coursework-label {
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0.2rem 0 0.45rem;
+}
+
+.coursework-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.2rem 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.coursework-grid li {
+  font-size: 0.84rem;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+  position: relative;
+  padding-left: 0.8rem;
+}
+
+.coursework-grid li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--color-text-secondary);
+}
+
+.financial-stats {
+  margin: 0.25rem 0 0.1rem 0.2rem;
+  padding: 0;
+  list-style: none;
+}
+
+.financial-stats li {
+  margin-bottom: 0.1rem;
+  padding-left: 0.8rem;
+  text-indent: 0;
+  position: relative;
+}
+
+.financial-stats li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--color-text-secondary);
 }
 
 /* ── Footer ── */
@@ -608,5 +678,10 @@
   .exp-header {
     flex-direction: column;
     gap: 0.1rem;
+  }
+
+  .coursework-grid {
+    grid-template-columns: 1fr;
+    gap: 0.12rem;
   }
 }

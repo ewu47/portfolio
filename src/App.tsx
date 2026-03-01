@@ -213,13 +213,22 @@ function App() {
         <div className="experience-list">
           <div className="experience-item">
             <div className="exp-header">
-              <h3>The University of Chicago</h3>
+              <h3 className="education-school">The University of Chicago</h3>
               <span className="exp-date">Sep 2024 — Jun 2028</span>
             </div>
             <p className="exp-role">B.S. Computer Science, B.A. Statistics — GPA: 3.56/4.00</p>
-            <ul className="exp-bullets">
-              <li>Coursework: Theory of Algorithms, Databases, Systems Programming, Discrete Mathematics</li>
-              <li>Financial Markets Program: Selective three-year program focused on quantitative finance through experiential workshops, mentorship, and coursework at Chicago Booth.</li>
+            <p className="coursework-label">Selected Coursework</p>
+            <ul className="coursework-grid">
+              <li>Introduction to Computer Science I &amp; II</li>
+              <li>Systems Programming I &amp; II</li>
+              <li>Theory of Algorithms</li>
+              <li>Intro to Database Systems</li>
+              <li>Discrete Mathematics</li>
+              <li>Applied Regression Analysis</li>
+              <li>Numerical Linear Algebra</li>
+              <li>Linear Algebra</li>
+              <li>Calculus II &amp; III</li>
+              <li>Mathematical Methods in Physical Sciences II</li>
             </ul>
           </div>
         </div>
@@ -295,6 +304,27 @@ function App() {
       <section className="section" id="activities">
         <h2>Extracurriculars &amp; Activities</h2>
         <div className="experience-list">
+          <div className="experience-item">
+            <div className="exp-header">
+              <h3>Financial Markets Program</h3>
+            </div>
+            <p className="exp-role">Part of my University of Chicago education experience.</p>
+            <ul className="exp-bullets education-highlights">
+              <li className="financial-program">Selective three-year program focused on quantitative finance through experiential workshops, mentorship, and coursework at Chicago Booth.</li>
+              <li>Firm visits and events: IMC Trading visit, Ready State Asset Management visit, Two Sigma (on-campus), D.E. Shaw (on-campus), Millennium Partners (on-campus).</li>
+              <li>UChicago Trading Competition — coming soon.</li>
+              <li>
+                IMC Prosperity 3 participant stats:
+                <ul className="financial-stats">
+                  <li>Overall: 1,058 / 12,620</li>
+                  <li>Manual: 822nd</li>
+                  <li>Algorithmic: 1,613th</li>
+                  <li>United States: 285th</li>
+                </ul>
+              </li>
+              <li>IMC Prosperity 4 — coming soon.</li>
+            </ul>
+          </div>
           <div className="experience-item">
             <div className="exp-header">
               <h3><a href = "https://athletics.uchicago.edu/sports/mens-soccer">
