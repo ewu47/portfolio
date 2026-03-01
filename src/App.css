@@ -122,9 +122,14 @@
 }
 
 .project-card {
+  width: 100%;
   padding: 1.25rem;
   border: 1px solid var(--color-border);
   border-radius: 8px;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  font: inherit;
   transition: border-color 0.2s ease;
 }
 
@@ -132,12 +137,6 @@
   font-size: 0.95rem;
   font-weight: 600;
   margin-bottom: 0.35rem;
-}
-
-.project-card-link {
-  text-decoration: none;
-  color: inherit;
-  border-bottom: none;
 }
 
 .project-card--clickable {
@@ -155,6 +154,13 @@
   color: var(--color-text-secondary);
   line-height: 1.5;
   margin-bottom: 0.75rem;
+}
+
+.project-card-hint {
+  display: inline-block;
+  margin-top: 0.7rem;
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
 }
 
 .tags {
@@ -184,6 +190,268 @@
   border-radius: 4px;
   vertical-align: middle;
   font-style: italic;
+}
+
+/* ── Contact CTA ── */
+
+.contact-cta {
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  padding: 1rem 1.1rem;
+  background: #fff;
+}
+
+.contact-cta p {
+  font-size: 0.88rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 0.9rem;
+}
+
+.contact-required-note {
+  font-size: 0.78rem;
+  margin-top: -0.35rem;
+  margin-bottom: 0.9rem;
+}
+
+.required-star {
+  color: #b42318;
+  font-weight: 700;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.contact-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.contact-field label {
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.contact-field input,
+.contact-field textarea {
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--color-text);
+  font: inherit;
+  font-size: 0.86rem;
+  padding: 0.55rem 0.65rem;
+}
+
+.contact-field textarea {
+  resize: vertical;
+  min-height: 110px;
+}
+
+.contact-field input:focus,
+.contact-field textarea:focus {
+  outline: none;
+  border-color: #bdbdbd;
+}
+
+.contact-honeypot {
+  display: none;
+}
+
+.contact-form-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  align-items: center;
+}
+
+.contact-submit {
+  border: 1px solid var(--color-text);
+  border-radius: 999px;
+  background: var(--color-text);
+  color: #fff;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 0.4rem 0.9rem;
+  cursor: pointer;
+  transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease, border-color 180ms ease;
+}
+
+.contact-submit:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(26, 26, 26, 0.18);
+}
+
+.contact-submit:disabled {
+  opacity: 0.7;
+  cursor: wait;
+  transform: none;
+  box-shadow: none;
+}
+
+.contact-submit--success {
+  background: #1f8a3f;
+  border-color: #1f8a3f;
+  animation: contact-submit-pop 520ms ease;
+}
+
+.contact-feedback {
+  font-size: 0.8rem;
+}
+
+.contact-feedback--success {
+  color: #217a3a;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  animation: contact-feedback-enter 520ms ease both;
+}
+
+.contact-feedback--success::before {
+  content: '✓';
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  background: #e8f7ed;
+  color: #1f8a3f;
+  font-size: 0.72rem;
+  font-weight: 700;
+  animation: contact-check-pop 520ms ease both;
+}
+
+.contact-feedback--error {
+  color: #b42318;
+  animation: contact-feedback-enter 380ms ease both;
+}
+
+@keyframes contact-submit-pop {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes contact-check-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes contact-feedback-enter {
+  0% {
+    opacity: 0;
+    transform: translateY(3px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Project Modal ── */
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(16, 16, 16, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 999;
+}
+
+.project-modal {
+  position: relative;
+  width: min(680px, 100%);
+  max-height: 88vh;
+  overflow-y: auto;
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid var(--color-border);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  padding: 1.2rem 1.2rem 1rem;
+}
+
+.project-modal h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+  padding-right: 2rem;
+}
+
+.modal-close {
+  position: absolute;
+  right: 0.75rem;
+  top: 0.55rem;
+  border: none;
+  background: transparent;
+  color: var(--color-text-secondary);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.modal-close:hover {
+  color: var(--color-text);
+}
+
+.modal-overview {
+  font-size: 0.88rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin-bottom: 0.8rem;
+}
+
+.modal-section {
+  margin-top: 0.7rem;
+}
+
+.modal-section h4 {
+  font-size: 0.82rem;
+  margin-bottom: 0.15rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--color-text);
+}
+
+.modal-section p {
+  font-size: 0.86rem;
+  color: var(--color-text-secondary);
+}
+
+.modal-links {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.modal-links a {
+  font-size: 0.82rem;
+  font-weight: 600;
+  border-bottom: 1px solid var(--color-border);
 }
 
 /* ── Spotify ── */
@@ -331,6 +599,10 @@
 
   .project-grid {
     grid-template-columns: 1fr;
+  }
+
+  .project-modal {
+    padding: 1rem 0.95rem 0.9rem;
   }
 
   .exp-header {

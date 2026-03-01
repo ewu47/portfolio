@@ -1,11 +1,14 @@
+import { useEffect, useState, type FormEvent } from 'react'
 import './App.css'
 
 const links = [
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/edward-minghao-wu/' },
   { label: 'GitHub', href: 'https://github.com/ewu47' },
   { label: 'Resume', href: '#resume-placeholder' },
-  { label: 'Email', href: 'mailto:emwu@uchicago.edu' },
+  { label: 'Contact', href: '#contact' },
 ]
+
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mreavjkr'
 
 interface Project {
   title: string
@@ -13,6 +16,12 @@ interface Project {
   tags: string[]
   link?: string
   status?: string
+  deepDive: {
+    overview: string
+    highlights: string[]
+    impact: string
+    links: { label: string; href: string }[]
+  }
 }
 
 const projects: Project[] = [
@@ -21,39 +30,148 @@ const projects: Project[] = [
     description: '3D fire safety navigation system — 2nd place out of 100+ teams at Nexhacks.',
     tags: ['Three.js', 'React Three Fiber', 'TypeScript', 'Azure OpenAI'],
     link: 'https://devpost.com/software/fire-cv?ref_content=my-projects-tab&ref_feature=my_projects',
+    deepDive: {
+      overview: 'Built an emergency navigation prototype that visualizes fire spread in 3D and suggests safer evacuation paths in real time.',
+      highlights: [
+        'Combined simulation + UI to make hazard zones intuitive under time pressure',
+        'Integrated Azure OpenAI to explain route choices in plain language',
+        'Designed for demo usability with rapid scene loading and clear path overlays',
+      ],
+      impact: 'Won 2nd place among 100+ teams and validated the concept with hackathon judges focused on practical impact.',
+      links: [{ label: 'Devpost', href: 'https://devpost.com/software/fire-cv?ref_content=my-projects-tab&ref_feature=my_projects' }],
+    },
   },
   {
     title: 'Divvy Data Analysis',
     description: 'Interactive visualization of 5M+ Chicago bike trip records with full ETL pipeline.',
     tags: ['PostgreSQL', 'React', 'TypeScript', 'Tableau'],
     link: 'https://ewu47.github.io/Wu-Viz/',
+    deepDive: {
+      overview: 'End-to-end analytics project processing a large urban mobility dataset and surfacing trends through interactive visual exploration.',
+      highlights: [
+        'Built ETL workflows to clean, transform, and aggregate 5M+ rows',
+        'Structured metrics for seasonal usage, station popularity, and route behavior',
+        'Shipped a public-facing visualization experience for fast pattern discovery',
+      ],
+      impact: 'Turned raw trip data into practical transportation insights while demonstrating full-stack data engineering + analytics execution.',
+      links: [{ label: 'Live Visualization', href: 'https://ewu47.github.io/Wu-Viz/' }],
+    },
   },
   {
     title: 'UChicago Sports Analytics Site',
     description: 'Official organization website, solely developed and deployed on Vercel.',
     tags: ['TypeScript', 'React', 'Vercel'],
     link: 'https://www.uchicagosportsanalytics.com',
+    deepDive: {
+      overview: 'Designed and shipped the official web presence for the organization, handling both frontend implementation and deployment.',
+      highlights: [
+        'Owned design-to-production execution as the sole developer',
+        'Set up maintainable TypeScript React structure for future contributors',
+        'Deployed and monitored on Vercel for reliable updates',
+      ],
+      impact: 'Provided a polished central hub for recruiting, events, and club visibility with an easy-to-maintain codebase.',
+      links: [{ label: 'Live Site', href: 'https://www.uchicagosportsanalytics.com' }],
+    },
   },
   {
     title: 'maketwentyfour',
     description: 'Multiplayer game of "Make 24"',
     tags: ['React', 'TypeScript', 'Supabase'],
     status: 'Coming Soon',
+    deepDive: {
+      overview: 'A realtime multiplayer math game where players race to form 24 using arithmetic from shared card sets.',
+      highlights: [
+        'Realtime match state synchronization planned with Supabase',
+        'Lightweight game loop focused on speed, fairness, and replayability',
+        'Clear UX for quick onboarding and competitive rounds',
+      ],
+      impact: 'Targets a fun, social way to practice arithmetic while showcasing multiplayer product engineering.',
+      links: [],
+    },
   },
   {
     title: 'Pulse',
     description: 'Interactive App and website blocker with social study sessions',
     tags: ['React', 'TypeScript'],
     status: 'Coming Soon',
-  },
-  {
-    title: 'Automated Stock Trading Bot',
-    description: 'Asynchronous algorithmic trading system with real-time WebSocket data streaming.',
-    tags: ['Python', 'Alpaca API', 'WebSockets'],
+    deepDive: {
+      overview: 'Productivity companion that blocks distractions while adding social accountability through live study sessions.',
+      highlights: [
+        'Focus-mode controls for app and site blocking',
+        'Shared sessions for peer accountability and momentum',
+        'Planned progress tracking to reinforce healthy habits',
+      ],
+      impact: 'Aims to increase deep-work consistency for students through behavior design plus lightweight social features.',
+      links: [],
+    },
   },
 ]
 
 function App() {
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null)
+  const [contactStatus, setContactStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
+
+  useEffect(() => {
+    if (!selectedProject) {
+      return
+    }
+
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setSelectedProject(null)
+      }
+    }
+
+    document.body.style.overflow = 'hidden'
+    window.addEventListener('keydown', handleEscape)
+
+    return () => {
+      document.body.style.overflow = ''
+      window.removeEventListener('keydown', handleEscape)
+    }
+  }, [selectedProject])
+
+  useEffect(() => {
+    if (contactStatus !== 'success') {
+      return
+    }
+
+    const resetTimer = window.setTimeout(() => {
+      setContactStatus('idle')
+    }, 4500)
+
+    return () => {
+      window.clearTimeout(resetTimer)
+    }
+  }, [contactStatus])
+
+  const handleContactSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    setContactStatus('sending')
+
+    const form = event.currentTarget
+    const formData = new FormData(form)
+
+    try {
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+        },
+        body: formData,
+      })
+
+      if (response.ok) {
+        form.reset()
+        setContactStatus('success')
+      } else {
+        setContactStatus('error')
+      }
+    } catch {
+      setContactStatus('error')
+    }
+  }
+
   return (
     <main className="container">
       <section className="hero">
@@ -149,29 +267,28 @@ function App() {
       <section className="section" id="projects">
         <h2>Projects</h2>
         <div className="project-grid">
-          {projects.map((p) => {
-            const card = (
-              <article key={p.title} className={`project-card${p.link ? ' project-card--clickable' : ''}`}>
-                <h3>
-                  {p.title}
-                  {p.status && <span className="status-badge">{p.status}</span>}
-                </h3>
-                <p>{p.description}</p>
-                <div className="tags">
-                  {p.tags.map((t) => (
-                    <span key={t} className="tag">{t}</span>
-                  ))}
-                </div>
-              </article>
-            )
-            return p.link ? (
-              <a key={p.title} href={p.link} target="_blank" rel="noopener noreferrer" className="project-card-link">
-                {card}
-              </a>
-            ) : (
-              card
-            )
-          })}
+          {projects.map((p) => (
+            <button
+              key={p.title}
+              type="button"
+              className="project-card project-card--clickable"
+              onClick={() => setSelectedProject(p)}
+              aria-haspopup="dialog"
+              aria-label={`Open details for ${p.title}`}
+            >
+              <h3>
+                {p.title}
+                {p.status && <span className="status-badge">{p.status}</span>}
+              </h3>
+              <p>{p.description}</p>
+              <div className="tags">
+                {p.tags.map((t) => (
+                  <span key={t} className="tag">{t}</span>
+                ))}
+              </div>
+              <span className="project-card-hint">Click for deep dive</span>
+            </button>
+          ))}
         </div>
       </section>
 
@@ -210,8 +327,7 @@ function App() {
             </div>
             <p className="exp-role">Associate Partner</p>
             <ul className="exp-bullets">
-              <li>Helped out with Human Behavior Co (YC x25) who raised 3.5 million</li>
-              <li>Still a lot more to learn in VC.</li>
+              <li>Still a lot more to learn in the VC space.</li>
             </ul>
           </div>
           <div className="experience-item">
@@ -239,7 +355,7 @@ function App() {
             </div>
             <p className="exp-role">Member</p>
             <ul className="exp-bullets">
-              <li>Professional technology fraternity</li>
+              <li>Professional technology fraternity, Theta Class 2024. </li>
             </ul>
           </div>
         </div>
@@ -265,12 +381,102 @@ function App() {
         </div>
       </section>
 
+      <section className="section" id="contact">
+        <h2>Let's Build Something</h2>
+        <div className="contact-cta">
+          <p>
+            Open to software engineering, product-minded internships, startup opportunities, and cool ideas in sports analytics.
+          </p>
+          <form className="contact-form" onSubmit={handleContactSubmit}>
+            <div className="contact-field">
+              <label htmlFor="contact-name">Name <span className="required-star" aria-hidden="true">*</span></label>
+              <input id="contact-name" type="text" name="name" required autoComplete="name" />
+            </div>
+
+            <div className="contact-field">
+              <label htmlFor="contact-email">Email <span className="required-star" aria-hidden="true">*</span></label>
+              <input id="contact-email" type="email" name="email" required autoComplete="email" />
+            </div>
+
+            <div className="contact-field">
+              <label htmlFor="contact-message">Description <span className="required-star" aria-hidden="true">*</span></label>
+              <textarea id="contact-message" name="message" rows={5} required />
+            </div>
+
+            <input type="text" name="_gotcha" className="contact-honeypot" tabIndex={-1} autoComplete="off" />
+
+            <div className="contact-form-footer">
+              <button
+                type="submit"
+                className={`contact-submit${contactStatus === 'success' ? ' contact-submit--success' : ''}`}
+                disabled={contactStatus === 'sending'}
+              >
+                {contactStatus === 'sending' ? 'Sending...' : contactStatus === 'success' ? 'Sent!' : 'Send Message'}
+              </button>
+              {contactStatus === 'success' && <p className="contact-feedback contact-feedback--success">Message sent. I'll contact you soon. Thanks!</p>}
+              {contactStatus === 'error' && <p className="contact-feedback contact-feedback--error">Something went wrong. Please try again or email me directly at (emwu@uchicago.edu).</p>}
+            </div>
+          </form>
+        </div>
+      </section>
+
       <footer className="footer">
         <p>
           Edward Wu &middot;{' '}
           <a href="mailto:emwu@uchicago.edu">emwu@uchicago.edu</a>
         </p>
       </footer>
+
+      {selectedProject && (
+        <div className="modal-backdrop" onClick={() => setSelectedProject(null)}>
+          <section
+            className="project-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="project-modal-title"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <button
+              type="button"
+              className="modal-close"
+              onClick={() => setSelectedProject(null)}
+              aria-label="Close project details"
+            >
+              ×
+            </button>
+
+            <h3 id="project-modal-title">
+              {selectedProject.title}
+              {selectedProject.status && <span className="status-badge">{selectedProject.status}</span>}
+            </h3>
+            <p className="modal-overview">{selectedProject.deepDive.overview}</p>
+
+            <div className="modal-section">
+              <h4>Highlights</h4>
+              <ul className="exp-bullets">
+                {selectedProject.deepDive.highlights.map((highlight) => (
+                  <li key={highlight}>{highlight}</li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="modal-section">
+              <h4>Impact</h4>
+              <p>{selectedProject.deepDive.impact}</p>
+            </div>
+
+            {selectedProject.deepDive.links.length > 0 && (
+              <div className="modal-links">
+                {selectedProject.deepDive.links.map((projectLink) => (
+                  <a key={projectLink.href} href={projectLink.href} target="_blank" rel="noopener noreferrer">
+                    {projectLink.label} <span className="arrow">{' ↗'}</span>
+                  </a>
+                ))}
+              </div>
+            )}
+          </section>
+        </div>
+      )}
     </main>
   )
 }
