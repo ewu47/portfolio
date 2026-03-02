@@ -4,7 +4,7 @@ import './App.css'
 const links = [
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/edward-minghao-wu/' },
   { label: 'GitHub', href: 'https://github.com/ewu47' },
-  { label: 'Resume', href: '#resume-placeholder' },
+  { label: 'Resume', href: 'https://resume.eddiemwu.com' },
   { label: 'Contact', href: '#contact' },
 ]
 
