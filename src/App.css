@@ -113,6 +113,45 @@
   border-bottom: 1px solid var(--color-border);
 }
 
+.section-dropdown {
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 0.2rem;
+}
+
+.section-dropdown > summary {
+  list-style: none;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--color-text);
+  padding-bottom: 0.6rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--color-border);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.section-dropdown > summary::-webkit-details-marker {
+  display: none;
+}
+
+.section-dropdown > summary::after {
+  content: '▾';
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+  transition: transform 0.2s ease;
+}
+
+.section-dropdown[open] > summary::after {
+  transform: rotate(0deg);
+}
+
+.section-dropdown:not([open]) > summary::after {
+  transform: rotate(-90deg);
+}
+
 /* ── Projects ── */
 
 .project-grid {

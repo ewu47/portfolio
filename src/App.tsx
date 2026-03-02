@@ -42,11 +42,12 @@ const projects: Project[] = [
     tags: ['Three.js', 'React Three Fiber', 'TypeScript', 'Azure OpenAI'],
     link: 'https://devpost.com/software/fire-cv?ref_content=my-projects-tab&ref_feature=my_projects',
     deepDive: {
-      overview: 'Built an emergency navigation prototype that visualizes fire spread in 3D and suggests safer evacuation paths in real time.',
+      overview: 'Built an emergency navigation prototype that visualizes fire spread in 3D and quickest and safest evacuation paths in real time.',
       highlights: [
         'Combined simulation + UI to make hazard zones intuitive under time pressure',
         'Integrated Azure OpenAI to explain route choices in plain language',
         'Designed for demo usability with rapid scene loading and clear path overlays',
+        'Meta Glasses integration coming soon.',
       ],
       impact: 'Won 2nd place among 100+ teams and validated the concept with hackathon judges focused on practical impact.',
       links: [{ label: 'Devpost', href: 'https://devpost.com/software/fire-cv?ref_content=my-projects-tab&ref_feature=my_projects' }],
@@ -54,17 +55,17 @@ const projects: Project[] = [
   },
   {
     title: 'Divvy Data Analysis',
-    description: 'Interactive visualization of 5M+ Chicago bike trip records with full ETL pipeline.',
+    description: 'Where did all the Divvy Bikes go? Visualization of 5M+ Chicago bike trip recoreds surrounding UChicago',
     tags: ['PostgreSQL', 'React', 'TypeScript', 'Tableau'],
     link: 'https://ewu47.github.io/Wu-Viz/',
     deepDive: {
-      overview: 'End-to-end analytics project processing a large urban mobility dataset and surfacing trends through interactive visual exploration.',
+      overview: 'This was my analysis on Divvy Bikes around UChicago as an avid user for the academic year 2024-2025. 2025-2026 coming soon.',
       highlights: [
         'Built ETL workflows to clean, transform, and aggregate 5M+ rows',
         'Structured metrics for seasonal usage, station popularity, and route behavior',
         'Shipped a public-facing visualization experience for fast pattern discovery',
       ],
-      impact: 'Turned raw trip data into practical transportation insights while demonstrating full-stack data engineering + analytics execution.',
+      impact: 'Turned raw trip data into practical transportation insights. Ultimately, place stations next to dorms please.',
       links: [{ label: 'Live Visualization', href: 'https://ewu47.github.io/Wu-Viz/' }],
     },
   },
@@ -74,7 +75,7 @@ const projects: Project[] = [
     tags: ['TypeScript', 'React', 'Vercel'],
     link: 'https://www.uchicagosportsanalytics.com',
     deepDive: {
-      overview: 'Designed and shipped the official web presence for the organization, handling both frontend implementation and deployment.',
+      overview: 'Designed and shipped the official web presence for the organizationm, this was quite fun to create since I had freedom on anything basically.',
       highlights: [
         'Owned design-to-production execution as the sole developer',
         'Set up maintainable TypeScript React structure for future contributors',
@@ -85,34 +86,50 @@ const projects: Project[] = [
     },
   },
   {
-    title: 'maketwentyfour',
+    title: 'MakeTwentyFour',
     description: 'Multiplayer game of "Make 24"',
     tags: ['React', 'TypeScript', 'Supabase'],
     status: 'Coming Soon',
     deepDive: {
       overview: 'A realtime multiplayer math game where players race to form 24 using arithmetic from shared card sets.',
       highlights: [
-        'Realtime match state synchronization planned with Supabase',
+        'This was a game thats pretty popular and I also played with my family growing up.',
+        'Realtime match state synchronization',
         'Lightweight game loop focused on speed, fairness, and replayability',
         'Clear UX for quick onboarding and competitive rounds',
       ],
-      impact: 'Targets a fun, social way to practice arithmetic while showcasing multiplayer product engineering.',
+      impact: 'Targets a fun, social way to practice arithmetic, hope to make it have a rating system with more features in the future.',
       links: [],
     },
   },
   {
     title: 'Pulse',
-    description: 'Interactive App and website blocker with social study sessions',
+    description: 'Interactive App and website blocker with social study sessions to focus on work.',
     tags: ['React', 'TypeScript'],
     status: 'Coming Soon',
     deepDive: {
-      overview: 'Productivity companion that blocks distractions while adding social accountability through live study sessions.',
+      overview: 'Currently just local blocker, need to add social features in the future.',
       highlights: [
         'Focus-mode controls for app and site blocking',
         'Shared sessions for peer accountability and momentum',
         'Planned progress tracking to reinforce healthy habits',
+        'Might implement an AI Agent/assistant to help focus on work, or even a CV to see common trends among productivity.'
       ],
-      impact: 'Aims to increase deep-work consistency for students through behavior design plus lightweight social features.',
+      impact: 'I sometimes cannot focus on work, this is the solution to that. I also think its cool to see your study stats.',
+      links: [],
+    },
+  },
+  {
+    title: 'Sports ML',
+    description: 'Sports ML project in progress.',
+    tags: ['Python', 'Machine Learning', 'Sports Analytics'],
+    status: 'Coming Soon',
+    deepDive: {
+      overview: 'Exploring sports analytics and machine learning most likely with Premier League data.',
+      highlights: [
+        'Thinking something FPL related becasue my fantasy absolutely sucks.',
+      ],
+      impact: 'Something that is cool and challenging to work on. Not too sure yet',
       links: [],
     },
   },
