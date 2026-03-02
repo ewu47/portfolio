@@ -359,8 +359,11 @@ function App() {
               </h3>
             </div>
             <ul className="exp-bullets">
-              <li>Athletic Honors: All-American 4th Team, All-Region 1st Team, UAA 1st Team, Academic All-District, UAA All Academic</li>
+              <li>Athletic Honors: All-American 4th Team, All-Region 1st Team, UAA 1st Team, Academic All-District, UAA All Academic
+              <li>Cool record: Scored the 2 fastest consecutive goals in program history (19s, 2025)</li>
+              </li>
               <li>Part of the leadership council, Team Impact Leadership Team, and Order of the C representative</li>
+              
               <li>Grew up playing for NCFC Academy for 7 years</li>
               <li>NCFC USL Two player for 2 years</li>
             </ul>
@@ -415,7 +418,7 @@ function App() {
       </section>
 
       <section className="section" id="fun">
-        <h2>Fun Things I Do</h2>
+        <h2>Other Fun Stuff/Facts</h2>
         <div className="experience-list">
           <div className="experience-item">
             <h3>
@@ -431,11 +434,23 @@ function App() {
               <li>10000+ streams, 4000+ listeners.</li>
             </ul>
           </div>
+          <div className="experience-item">
+            <h3>Marathon (Untrained)</h3>
+            <ul className="exp-bullets">
+              <li>5 hr 30 min. Terrible time, I know.</li>
+            </ul>
+          </div>
+          <div className="experience-item">
+            <h3>Duke and Tottenham Hotspurs fan</h3>
+            <ul className="exp-bullets">
+              <li>NCAA Champions and Champions League incoming.</li>
+            </ul>
+          </div>
         </div>
       </section>
 
       <section className="section" id="contact">
-        <h2>Let's Build Something</h2>
+        <h2>Let's Connect!</h2>
         <div className="contact-cta">
           <p>
             Open to software engineering, product-minded internships, startup opportunities, and cool ideas in sports analytics.
