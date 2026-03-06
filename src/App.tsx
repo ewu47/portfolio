@@ -10,14 +10,29 @@ const links = [
 
 const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mreavjkr'
 
-const codingLanguages = [
+const sectionNavLinks = [
+  { label: 'About', href: '#about' },
+  { label: 'Education', href: '#education' },
+  { label: 'Skills', href: '#skills' },
+  { label: 'Experience', href: '#experience' },
+  { label: 'Projects', href: '#projects' },
+  { label: 'Activities', href: '#activities' },
+  { label: 'Fun', href: '#fun' },
+  { label: 'Contact', href: '#contact' },
+]
+
+const skills = [
   { name: 'Python', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg' },
   { name: 'TypeScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg' },
   { name: 'JavaScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg' },
   { name: 'Java', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg' },
   { name: 'C', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg' },
   { name: 'Rust', icon: '/assets/rust.png' },
-  { name: 'SQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg' },
+  { name: 'PostgreSQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg' },
+  { name: 'MongoDB', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg' },
+  { name: 'Docker', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg' },
+  { name: 'Git', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg' },
+  { name: 'AWS', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg' },
   { name: 'R', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/r/r-original.svg' },
 ]
 
@@ -138,6 +153,7 @@ const projects: Project[] = [
 function App() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
   const [contactStatus, setContactStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
+  const [isNavCompact, setIsNavCompact] = useState(false)
 
   useEffect(() => {
     if (!selectedProject) {
@@ -173,6 +189,19 @@ function App() {
     }
   }, [contactStatus])
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsNavCompact(window.scrollY > 90)
+    }
+
+    handleScroll()
+    window.addEventListener('scroll', handleScroll, { passive: true })
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+
   const handleContactSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     setContactStatus('sending')
@@ -202,7 +231,15 @@ function App() {
 
   return (
     <main className="container">
-      <section className="hero">
+      <nav className={`portfolio-nav${isNavCompact ? ' portfolio-nav--compact' : ''}`} aria-label="Portfolio sections">
+        {sectionNavLinks.map((item) => (
+          <a key={item.href} href={item.href}>
+            {item.label}
+          </a>
+        ))}
+      </nav>
+
+      <section className="hero" id="about">
         <div className="hero-photo">
           <img src="/assets/profile_photo.jpeg" alt="Edward Wu" />
         </div>
@@ -263,12 +300,12 @@ function App() {
       </section>
 
       <section className="section" id="skills">
-        <h2>Coding Languages</h2>
+        <h2>Skills</h2>
         <div className="skills-grid">
-          {codingLanguages.map((language) => (
-            <article key={language.name} className="skill-chip">
-              <img src={language.icon} alt={`${language.name} logo`} />
-              <span>{language.name}</span>
+          {skills.map((skill) => (
+            <article key={skill.name} className="skill-chip">
+              <img src={skill.icon} alt={`${skill.name} logo`} />
+              <span>{skill.name}</span>
             </article>
           ))}
         </div>
