@@ -252,7 +252,7 @@ function App() {
             Hello there! I'm Edward <strong>(Eddie)</strong> Wu, a 2nd year sophomore studying CS (spec. leaning towards ML) and Statistics at UChicago. 
           </p>
           <p className="bio">
-            I'm currently interested in the SWE and startup space (still figuring out specifically what I like), and also anything to do with sports ML + analytics.
+            I'm currently interested in the SWE and startup space (still figuring out specifically what I like), and also anything to do with ML + analytics.
           </p>
           <p className="bio"> 
             I'm from Cary, NC!
@@ -281,8 +281,8 @@ function App() {
               <h3 className="education-school">The University of Chicago</h3>
               <span className="exp-date">Sep 2024 — Jun 2028</span>
             </div>
-            <p className="exp-role">B.S. Computer Science, B.A. Statistics — GPA: 3.56/4.00</p>
-            <p className="coursework-label">Selected Coursework</p>
+            <p className="exp-role">B.S. Computer Science, B.A. Statistics</p>
+            <p className="coursework-label">Relevant Coursework</p>
             <ul className="coursework-grid">
               <li>Introduction to Computer Science I &amp; II</li>
               <li>Systems Programming I &amp; II</li>
@@ -293,7 +293,7 @@ function App() {
               <li>Numerical Linear Algebra</li>
               <li>Linear Algebra</li>
               <li>Calculus II &amp; III</li>
-              <li>Mathematical Methods in Physical Sciences II</li>
+              <li>Mathematical Probability</li>
             </ul>
           </div>
         </div>
@@ -389,7 +389,7 @@ function App() {
             <ul className="exp-bullets education-highlights">
               <li className="financial-program">Selective three-year program focused on quantitative finance through experiential workshops, mentorship, and coursework at Chicago Booth.</li>
               <li>Firm visits and events: IMC Trading visit, Ready State Asset Management visit, Two Sigma (on-campus), D.E. Shaw (on-campus), Millennium Partners (on-campus).</li>
-              <li>UChicago Trading Competition — coming soon.</li>
+              <li>UChicago Trading Competition — <a href = "https://github.com/ewu47/UTC-Chicago6-Case1"> Github</a></li>
               <li>
                 IMC Prosperity 3 participant stats:
                 <ul className="financial-stats">
@@ -400,6 +400,18 @@ function App() {
                 </ul>
               </li>
               <li>IMC Prosperity 4 — coming soon.</li>
+            </ul>
+          </div>
+          <div className="experience-item">
+            <div className="exp-header">
+              <h3><a href="https://github.com/NickRoss/2026-AI-Development" target="_blank" rel="noopener noreferrer">AI Development Program</a></h3>
+            </div>
+            <p className="exp-role">Part of my University of Chicago education experience.</p>
+            <ul className="exp-bullets education-highlights">
+              <li className="financial-program">Four-part workshop series through UChicago's Career Advancement Office and Data Science Institute, focused on practical AI development for advanced undergraduates.</li>
+              <li>Covered AI coding foundations, cost estimation, context engineering, prompt optimization, and AI agent architecture.</li>
+              <li>Built increasingly sophisticated AI systems through a resume screening case study using Python and Jupyter notebooks.</li>
+              <li>Topics included agent loop patterns, function calling, production monitoring, safety, and human-in-the-loop design.</li>
             </ul>
           </div>
           <div className="experience-item">
@@ -456,7 +468,8 @@ function App() {
             <p className="exp-role">Analyst</p>
             <ul className="exp-bullets">
               <li>Premier quantitative finance organization</li>
-              <li>Learning a lot about quant finance. Project coming soon...</li>
+              <li>Learning a lot about quant finance.</li>
+              <li>Link to our <a href = "https://docs.google.com/presentation/d/1yVVAp8s33R_kL2M4fORnC-Rg09f8YG8wceOx2IToF3s/edit?usp=sharing"> project! </a> </li>
             </ul>
           </div>
           <div className="experience-item">
@@ -491,13 +504,14 @@ function App() {
           <div className="experience-item">
             <h3>Marathon (Untrained)</h3>
             <ul className="exp-bullets">
-              <li>5 hr 30 min. Terrible time, I know.</li>
+              <li>5 hr 30 min. Excited for the next!</li>
             </ul>
           </div>
           <div className="experience-item">
             <h3>Duke and Tottenham Hotspurs fan</h3>
             <ul className="exp-bullets">
               <li>NCAA Champions and Champions League incoming.</li>
+              <li>Update: We sold the NCAA and Spurs might be getting relegated...</li>
             </ul>
           </div>
         </div>
@@ -507,7 +521,7 @@ function App() {
         <h2>Let's Connect!</h2>
         <div className="contact-cta">
           <p>
-            Open to software engineering, product-minded internships, startup opportunities, and cool ideas in sports analytics.
+            Open to software engineering, product-minded internships, startup opportunities, research, and cool projects.
           </p>
           <form className="contact-form" onSubmit={handleContactSubmit}>
             <div className="contact-field">
