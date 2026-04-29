@@ -241,7 +241,7 @@ function App() {
 
       <section className="hero" id="about">
         <div className="hero-photo">
-          <img src="/assets/profile_photo.jpeg" alt="Edward Wu" />
+          <img src="/assets/pfp26.jpg" alt="Edward Wu" />
         </div>
         <div className="hero-text">
           <h1>Edward Wu</h1>
